@@ -8,6 +8,7 @@
 package com.alibaba.cola.extension;
 
 import com.alibaba.cola.extension.register.AbstractComponentExecutor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,9 +20,8 @@ import javax.annotation.Resource;
  * @author fulan.zjf 2017-11-05
  */
 @Component
+@Slf4j
 public class ExtensionExecutor extends AbstractComponentExecutor {
-
-    private Logger logger = LoggerFactory.getLogger(ExtensionExecutor.class);
 
     @Resource
     private ExtensionRepository extensionRepository;
@@ -29,7 +29,7 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
     @Override
     protected <C> C locateComponent(Class<C> targetClz, BizScenario bizScenario) {
         C extension = locateExtension(targetClz, bizScenario);
-        logger.debug("[Located Extension]: " + extension.getClass().getSimpleName());
+        log.debug("[Located Extension]: " + extension.getClass().getSimpleName());
         return extension;
     }
 
@@ -48,7 +48,7 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
 
         Ext extension;
 
-        logger.debug("BizScenario in locateExtension is : " + bizScenario.getUniqueIdentity());
+        log.debug("BizScenario in locateExtension is : " + bizScenario.getUniqueIdentity());
 
         // first try with full namespace
         extension = firstTry(targetClz, bizScenario);
@@ -77,7 +77,7 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
      * example:  biz1.useCase1.scenario1
      */
     private  <Ext> Ext firstTry(Class<Ext> targetClz, BizScenario bizScenario) {
-        logger.debug("First trying with " + bizScenario.getUniqueIdentity());
+        log.debug("First trying with " + bizScenario.getUniqueIdentity());
         return locate(targetClz.getName(), bizScenario.getUniqueIdentity());
     }
 
@@ -87,7 +87,7 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
      * example:  biz1.useCase1.#defaultScenario#
      */
     private <Ext> Ext secondTry(Class<Ext> targetClz, BizScenario bizScenario){
-        logger.debug("Second trying with " + bizScenario.getIdentityWithDefaultScenario());
+        log.debug("Second trying with " + bizScenario.getIdentityWithDefaultScenario());
         return locate(targetClz.getName(), bizScenario.getIdentityWithDefaultScenario());
     }
 
@@ -97,14 +97,12 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
      * example:  biz1.#defaultUseCase#.#defaultScenario#
      */
     private <Ext> Ext defaultUseCaseTry(Class<Ext> targetClz, BizScenario bizScenario){
-        logger.debug("Third trying with " + bizScenario.getIdentityWithDefaultUseCase());
+        log.debug("Third trying with " + bizScenario.getIdentityWithDefaultUseCase());
         return locate(targetClz.getName(), bizScenario.getIdentityWithDefaultUseCase());
     }
 
     private <Ext> Ext locate(String name, String uniqueIdentity) {
-        final Ext ext = (Ext) extensionRepository.getExtensionRepo().
-                get(new ExtensionCoordinate(name, uniqueIdentity));
-        return ext;
+        return (Ext) extensionRepository.getExtensionRepo().get(new ExtensionCoordinate(name, uniqueIdentity));
     }
 
     private void checkNull(BizScenario bizScenario){

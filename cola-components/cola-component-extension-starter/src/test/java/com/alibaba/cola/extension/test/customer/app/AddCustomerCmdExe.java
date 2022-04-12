@@ -2,17 +2,14 @@ package com.alibaba.cola.extension.test.customer.app;
 
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.extension.ExtensionExecutor;
+import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerValidatorExtensionPoint;
 import com.alibaba.cola.extension.test.customer.app.extensionpoint.CustomerConvertorExtensionPoint;
-import com.alibaba.cola.extension.test.customer.infrastructure.DomainEventPublisher;
 import com.alibaba.cola.extension.test.customer.client.AddCustomerCmd;
 import com.alibaba.cola.extension.test.customer.domain.CustomerEntity;
-import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerValidatorExtensionPoint;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
+import com.alibaba.cola.extension.test.customer.infrastructure.DomainEventPublisher;
 import javax.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * AddCustomerCmdExe
@@ -34,13 +31,15 @@ public class AddCustomerCmdExe {
         log.info("Start processing command:" + cmd);
 
         //validation
-        extensionExecutor.executeVoid(AddCustomerValidatorExtensionPoint.class, cmd.getBizScenario(), extension -> extension.validate(cmd));
+        extensionExecutor.executeVoid(AddCustomerValidatorExtensionPoint.class, cmd.getBizScenario(),
+            extension -> extension.validate(cmd));
 
         //Convert CO to Entity
-        CustomerEntity customerEntity = extensionExecutor.execute(CustomerConvertorExtensionPoint.class, cmd.getBizScenario(), extension -> extension.clientToEntity(cmd));
+        CustomerEntity customerEntity = extensionExecutor.execute(CustomerConvertorExtensionPoint.class,
+            cmd.getBizScenario(), extension -> extension.clientToEntity(cmd));
 
         //Call Domain Entity for business logic processing
-        log.info("Call Domain Entity for business logic processing..."+customerEntity);
+        log.info("Call Domain Entity for business logic processing..." + customerEntity);
         customerEntity.addNewCustomer();
 
         //domainEventPublisher.publish(new CustomerCreatedEvent());
