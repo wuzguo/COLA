@@ -4,7 +4,7 @@
 package ${package}.test;
 
 import com.alibaba.cola.dto.Response;
-import ${package}.api.CustomerServiceI;
+import ${package}.api.ICustomerService;
 import ${package}.dto.CustomerAddCmd;
 import ${package}.dto.data.CustomerDTO;
 import ${package}.dto.data.ErrorCode;
@@ -27,7 +27,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CustomerServiceTest {
 
     @Autowired
-    private CustomerServiceI customerService;
+    private ICustomerService customerService;
 
 
     @Before

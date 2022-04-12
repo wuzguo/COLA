@@ -28,10 +28,7 @@ public abstract class PageQuery extends Query {
     private boolean needTotalCount = true;
 
     public int getPageIndex() {
-        if (pageIndex < 1) {
-            return 1;
-        }
-        return pageIndex;
+        return Math.max(pageIndex, 1);
     }
 
     public PageQuery setPageIndex(int pageIndex) {

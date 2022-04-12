@@ -4,7 +4,7 @@ import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.extension.test.customer.client.AddCustomerCmd;
 import com.alibaba.cola.extension.test.customer.client.CustomerDTO;
-import com.alibaba.cola.extension.test.customer.client.CustomerServiceI;
+import com.alibaba.cola.extension.test.customer.client.ICustomerService;
 import com.alibaba.cola.extension.test.customer.client.GetOneCustomerQry;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @author Frank Zhang 2018-01-06 7:40 PM
  */
 @Service
-public class CustomerServiceImpl implements CustomerServiceI {
+public class CustomerServiceImpl implements ICustomerService {
 
     @Resource
     private AddCustomerCmdExe addCustomerCmdExe;

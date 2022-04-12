@@ -6,7 +6,7 @@ package ${package}.customer;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.catchlog.CatchAndLog;
-import ${package}.api.CustomerServiceI;
+import ${package}.api.ICustomerService;
 import ${package}.dto.CustomerAddCmd;
 import ${package}.dto.CustomerListByNameQry;
 import ${package}.dto.data.CustomerDTO;
@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 
 @Service
 @CatchAndLog
-public class CustomerServiceImpl implements CustomerServiceI {
+public class CustomerServiceImpl implements ICustomerService {
 
     @Resource
     private CustomerAddCmdExe customerAddCmdExe;

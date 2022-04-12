@@ -5,7 +5,7 @@ import com.alibaba.cola.extension.BizScenario;
 import com.alibaba.cola.extension.test.customer.client.AddCustomerCmd;
 import com.alibaba.cola.extension.test.customer.client.Constants;
 import com.alibaba.cola.extension.test.customer.client.CustomerDTO;
-import com.alibaba.cola.extension.test.customer.client.CustomerServiceI;
+import com.alibaba.cola.extension.test.customer.client.ICustomerService;
 import com.alibaba.cola.extension.test.customer.domain.CustomerType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,7 +25,7 @@ import javax.annotation.Resource;
 @SpringBootTest(classes = Application.class)
 public class ExtensionTest {
     @Resource
-    private CustomerServiceI customerService;
+    private ICustomerService customerService;
 
     @Test
     public void testBiz1UseCase1Scenario1AddCustomerSuccess(){

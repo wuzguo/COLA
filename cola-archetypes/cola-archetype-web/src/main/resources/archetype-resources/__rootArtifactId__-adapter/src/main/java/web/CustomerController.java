@@ -5,7 +5,7 @@ package ${package}.web;
 
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
-import ${package}.api.CustomerServiceI;
+import ${package}.api.ICustomerService;
 import ${package}.dto.CustomerAddCmd;
 import ${package}.dto.CustomerListByNameQry;
 import ${package}.dto.data.CustomerDTO;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
 
     @Autowired
-    private CustomerServiceI customerService;
+    private ICustomerService customerService;
 
     @GetMapping(value = "/helloworld")
     public String helloWorld(){

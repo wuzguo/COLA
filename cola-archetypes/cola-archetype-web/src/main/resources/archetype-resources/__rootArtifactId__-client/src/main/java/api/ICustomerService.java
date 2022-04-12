@@ -5,11 +5,10 @@ package ${package}.api;
 
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
-import ${package}.dto.CustomerAddCmd;
-import ${package}.dto.CustomerListByNameQry;
-import ${package}.dto.data.CustomerDTO;
+{package}.dto.CustomerAddCmd;
+import ${package}.dto.CustomerListByNameQry;{package}.dto.data.CustomerDTO;
 
-public interface CustomerServiceI {
+public interface ICustomerService {
 
     Response addCustomer(CustomerAddCmd customerAddCmd);
 
