@@ -4,6 +4,7 @@ import com.alibaba.cola.dto.ClientObject;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import lombok.EqualsAndHashCode;
 
 /**
  * MiscMetricCO
@@ -11,7 +12,9 @@ import javax.validation.constraints.NotEmpty;
  * @author Frank Zhang
  * @date 2019-03-04 10:58 AM
  */
+
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class MiscMetricCO extends AbstractMetricCO {
 
     /**

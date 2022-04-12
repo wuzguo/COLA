@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomerGatewayImpl implements CustomerGateway {
+
     @Autowired
     private CustomerMapper customerMapper;
 

@@ -13,10 +13,15 @@ import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
  * @author Frank Zhang
  * @date 2019-02-28 6:15 PM
  */
-public interface UserProfileServiceI {
+public interface IUserProfileService {
+
     Response addUserProfile(UserProfileAddCmd cmd);
+
     Response updateUserProfile(UserProfileUpdateCmd cmd);
+
     Response refreshScore(RefreshScoreCmd cmd);
+
     SingleResponse<UserProfileCO> getUserProfileBy(UserProfileGetQry qry);
+
     MultiResponse<UserProfileCO>  listUserProfileBy(UserProfileListQry qry);
 }

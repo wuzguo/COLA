@@ -2,6 +2,7 @@ package com.alibaba.craftsman.dto.clientobject;
 
 import com.alibaba.cola.dto.ClientObject;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * SharingMetricCO
@@ -9,12 +10,17 @@ import lombok.Data;
  * @author Frank Zhang
  * @date 2019-03-02 4:55 PM
  */
+
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class SharingMetricCO extends AbstractMetricCO {
 
     public final static String TEAM_SCOPE = "TEAM";
+
     public final static String BU_SCOPE = "BU";
+
     public final static String ALIBABA_SCOPE = "ALIBABA";
+
     public final static String COMMUNITY_SCOPE = "COMMUNITY";
 
     /**

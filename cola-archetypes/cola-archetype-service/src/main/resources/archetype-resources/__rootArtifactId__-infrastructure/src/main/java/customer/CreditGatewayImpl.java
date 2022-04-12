@@ -7,6 +7,7 @@ import ${package}.domain.customer.Credit;
 import ${package}.domain.customer.gateway.CreditGateway;
 
 public class CreditGatewayImpl implements CreditGateway {
+
     public Credit getCredit(String customerId){
       return null;
     }

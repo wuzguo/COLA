@@ -3,7 +3,7 @@ package com.alibaba.craftsman.service;
 import com.alibaba.cola.catchlog.CatchAndLog;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
-import com.alibaba.craftsman.api.MetricsServiceI;
+import com.alibaba.craftsman.api.IMetricsService;
 import com.alibaba.craftsman.command.*;
 import com.alibaba.craftsman.command.query.ATAMetricQryExe;
 import com.alibaba.craftsman.dto.*;
@@ -20,24 +20,32 @@ import javax.annotation.Resource;
  */
 @Service
 @CatchAndLog
-public class MetricsServiceImpl implements MetricsServiceI{
+public class MetricsServiceImpl implements IMetricsService {
 
     @Resource
     private ATAMetricAddCmdExe ataMetricAddCmdExe;
+
     @Resource
     private SharingMetricAddCmdExe sharingMetricAddCmdExe;
+
     @Resource
     private PatentMetricAddCmdExe patentMetricAddCmdExe;
+
     @Resource
     private PaperMetricAddCmdExe paperMetricAddCmdExe;
+
     @Resource
     private RefactoringMetricAddCmdExe refactoringMetricAddCmdExe;
+
     @Resource
     private MiscMetricAddCmdExe miscMetricAddCmdExe;
+
     @Resource
     private CodeReviewMetricAddCmdExe codeReviewMetricAddCmdExe;
+
     @Resource
     private MetricDeleteCmdExe metricDeleteCmdExe;
+
     @Resource
     private ATAMetricQryExe ataMetricQryExe;
 
