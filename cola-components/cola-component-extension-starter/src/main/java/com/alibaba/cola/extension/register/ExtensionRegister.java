@@ -26,7 +26,7 @@ public class ExtensionRegister{
     @Resource
     private ExtensionRepository extensionRepository;
 
-    public final static String EXTENSION_EXTPT_NAMING = "ExtPt";
+    public static final String EXTENSION_EXTPT_NAMING = "ExtPt";
 
 
     public void doRegistration(IExtensionPoint extensionObject){

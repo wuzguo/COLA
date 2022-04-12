@@ -8,10 +8,13 @@ package com.alibaba.cola.extension;
  * @date 2019-08-20 12:07
  */
 public class BizScenario {
-    public final static String DEFAULT_BIZ_ID = "#defaultBizId#";
-    public final static String DEFAULT_USE_CASE = "#defaultUseCase#";
-    public final static String DEFAULT_SCENARIO = "#defaultScenario#";
-    private final static String DOT_SEPARATOR = ".";
+    public static final String DEFAULT_BIZ_ID = "#defaultBizId#";
+    
+    public static final String DEFAULT_USE_CASE = "#defaultUseCase#";
+    
+    public static final String DEFAULT_SCENARIO = "#defaultScenario#";
+    
+    private static final String DOT_SEPARATOR = ".";
 
     /**
      * bizId is used to identify a business, such as "tmall", it's nullable if there is only one biz

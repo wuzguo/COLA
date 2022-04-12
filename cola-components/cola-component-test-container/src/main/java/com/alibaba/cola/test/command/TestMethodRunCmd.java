@@ -17,8 +17,8 @@ import java.util.List;
 public class TestMethodRunCmd extends AbstractCommand {
 
     private static final String RE_RECORD = "rr";
-    public final static String DOT = ".";
-    public final static String NOTE_SYMBOL = "#";
+    public static final String DOT = ".";
+    public static final String NOTE_SYMBOL = "#";
     private String methodName;
     private String className;
     /** 是否片段录制*/

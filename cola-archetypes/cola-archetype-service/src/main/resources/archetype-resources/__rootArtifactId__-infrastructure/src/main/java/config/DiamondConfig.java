@@ -4,5 +4,5 @@
 package ${package}.config;
 
 public class DiamondConfig {
-    public final static String DummyConfig = "DummyConfig";
+    public static final String DummyConfig = "DummyConfig";
 }

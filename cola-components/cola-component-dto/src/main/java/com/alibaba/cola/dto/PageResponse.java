@@ -10,6 +10,7 @@ import java.util.List;
  * <p/>
  * Created by xiaochu.lbj on 2020/06/30.
  */
+
 public class PageResponse<T> extends Response {
 
     private static final long serialVersionUID = 1L;
