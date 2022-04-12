@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Extension(bizId = "A")
 @Component
-public class SomeExtensionA implements SomeExtPt {
+public class SomeExtensionA implements SomeExtensionPoint {
 
     @Override
     public void doSomeThing() {

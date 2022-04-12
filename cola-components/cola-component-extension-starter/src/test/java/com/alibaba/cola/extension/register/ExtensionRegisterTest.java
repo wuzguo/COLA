@@ -23,14 +23,14 @@ public class ExtensionRegisterTest {
 
     @Test
     public void test() {
-        SomeExtPt extA = new SomeExtensionA();
+        SomeExtensionPoint extA = new SomeExtensionA();
         register.doRegistration(extA);
 
-        SomeExtPt extB = CglibProxyFactory.createProxy(new SomeExtensionB());
+        SomeExtensionPoint extB = CglibProxyFactory.createProxy(new SomeExtensionB());
         register.doRegistration(extB);
         
-        executor.executeVoid(SomeExtPt.class, BizScenario.valueOf("A"), SomeExtPt::doSomeThing);
-        executor.executeVoid(SomeExtPt.class, BizScenario.valueOf("B"), SomeExtPt::doSomeThing);
+        executor.executeVoid(SomeExtensionPoint.class, BizScenario.valueOf("A"), SomeExtensionPoint::doSomeThing);
+        executor.executeVoid(SomeExtensionPoint.class, BizScenario.valueOf("B"), SomeExtensionPoint::doSomeThing);
     }
     
 }

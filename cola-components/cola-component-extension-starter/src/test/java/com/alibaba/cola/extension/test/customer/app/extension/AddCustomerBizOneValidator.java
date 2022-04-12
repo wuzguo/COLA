@@ -5,7 +5,7 @@ import com.alibaba.cola.extension.Extension;
 import com.alibaba.cola.extension.test.customer.client.AddCustomerCmd;
 import com.alibaba.cola.extension.test.customer.client.Constants;
 import com.alibaba.cola.extension.test.customer.domain.CustomerType;
-import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerValidatorExtPt;
+import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerValidatorExtensionPoint;
 
 /**
  * AddCustomerBizOneValidator
@@ -14,7 +14,7 @@ import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerVa
  * @date 2018-01-07 1:31 AM
  */
 @Extension(bizId = Constants.BIZ_1)
-public class AddCustomerBizOneValidator implements AddCustomerValidatorExtPt {
+public class AddCustomerBizOneValidator implements AddCustomerValidatorExtensionPoint {
 
     public void validate(AddCustomerCmd addCustomerCmd) {
         //For BIZ TWO CustomerTYpe could not be VIP

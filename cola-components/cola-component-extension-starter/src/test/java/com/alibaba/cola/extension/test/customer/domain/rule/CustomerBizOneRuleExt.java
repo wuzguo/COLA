@@ -13,7 +13,7 @@ import com.alibaba.cola.extension.test.customer.domain.SourceType;
  * @date 2018-01-07 12:10 PM
  */
 @Extension(bizId = Constants.BIZ_1)
-public class CustomerBizOneRuleExt implements CustomerRuleExtPt{
+public class CustomerBizOneRuleExt implements CustomerRuleExtensionPoint {
 
     @Override
     public boolean addCustomerCheck(CustomerEntity customerEntity) {

@@ -3,7 +3,7 @@ package com.alibaba.cola.extension.test.customer.app.extension;
 import com.alibaba.cola.extension.Extension;
 import com.alibaba.cola.extension.test.customer.client.AddCustomerCmd;
 import com.alibaba.cola.extension.test.customer.client.Constants;
-import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerValidatorExtPt;
+import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerValidatorExtensionPoint;
 
 /**
  * AddCustomerBiz1UseCase1Validator
@@ -12,7 +12,7 @@ import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerVa
  * @date 2020-08-20 12:58 PM
  */
 @Extension(bizId = Constants.BIZ_1, useCase = Constants.USE_CASE_1)
-public class AddCustomerBiz1UseCase1Validator implements AddCustomerValidatorExtPt {
+public class AddCustomerBiz1UseCase1Validator implements AddCustomerValidatorExtensionPoint {
     public void validate(AddCustomerCmd addCustomerCmd) {
         System.out.println("Do validation for Biz_One's Use_Case_One");
     }

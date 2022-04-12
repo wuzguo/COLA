@@ -3,7 +3,7 @@ package com.alibaba.cola.extension.test.customer.domain;
 import com.alibaba.cola.domain.Entity;
 import com.alibaba.cola.extension.BizScenario;
 import com.alibaba.cola.extension.ExtensionExecutor;
-import com.alibaba.cola.extension.test.customer.domain.rule.CustomerRuleExtPt;
+import com.alibaba.cola.extension.test.customer.domain.rule.CustomerRuleExtensionPoint;
 import com.alibaba.cola.extension.test.customer.infrastructure.CustomerRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class CustomerEntity {
 
     public void addNewCustomer() {
         //Add customer policy
-        extensionExecutor.execute(CustomerRuleExtPt.class,this.getBizScenario(), extension -> extension.addCustomerCheck(this));
+        extensionExecutor.execute(CustomerRuleExtensionPoint.class,this.getBizScenario(), extension -> extension.addCustomerCheck(this));
 
         //Persist customer
         customerRepository.persist(this);

@@ -19,11 +19,11 @@ import java.util.Map;
 @Component
 public class ExtensionRepository {
 
-    public Map<ExtensionCoordinate, ExtensionPointI> getExtensionRepo() {
+    public Map<ExtensionCoordinate, IExtensionPoint> getExtensionRepo() {
         return extensionRepo;
     }
 
-    private Map<ExtensionCoordinate, ExtensionPointI> extensionRepo = new HashMap<>();
+    private Map<ExtensionCoordinate, IExtensionPoint> extensionRepo = new HashMap<>();
 
 
 }

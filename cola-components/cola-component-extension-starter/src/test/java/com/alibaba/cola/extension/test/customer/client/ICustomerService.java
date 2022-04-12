@@ -9,6 +9,8 @@ import com.alibaba.cola.dto.SingleResponse;
  * @author Frank Zhang 2018-01-06 7:24 PM
  */
 public interface ICustomerService {
-    public Response addCustomer(AddCustomerCmd addCustomerCmd);
-    public SingleResponse<CustomerDTO> getCustomer(GetOneCustomerQry getOneCustomerQry);
+
+     Response addCustomer(AddCustomerCmd addCustomerCmd);
+
+     SingleResponse<CustomerDTO> getCustomer(GetOneCustomerQry getOneCustomerQry);
 }

@@ -29,7 +29,7 @@ public class ExtensionRegister{
     public final static String EXTENSION_EXTPT_NAMING = "ExtPt";
 
 
-    public void doRegistration(ExtensionPointI extensionObject){
+    public void doRegistration(IExtensionPoint extensionObject){
         Class<?>  extensionClz = extensionObject.getClass();
         if (AopUtils.isAopProxy(extensionObject)) {
             extensionClz = ClassUtils.getUserClass(extensionObject);
@@ -37,7 +37,7 @@ public class ExtensionRegister{
         Extension extensionAnn = AnnotationUtils.findAnnotation(extensionClz, Extension.class);
         BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
         ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
-        ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
+        IExtensionPoint preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
         if (preVal != null) {
             throw new RuntimeException("Duplicate registration is not allowed for :" + extensionCoordinate);
         }

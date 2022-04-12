@@ -1,6 +1,6 @@
 package com.alibaba.cola.extension.test.customer.domain.rule;
 
-import com.alibaba.cola.extension.ExtensionPointI;
+import com.alibaba.cola.extension.IExtensionPoint;
 import com.alibaba.cola.extension.test.customer.domain.CustomerEntity;
 
 /**
@@ -9,7 +9,7 @@ import com.alibaba.cola.extension.test.customer.domain.CustomerEntity;
  * @author Frank Zhang
  * @date 2018-01-07 12:03 PM
  */
-public interface CustomerRuleExtPt extends ExtensionPointI {
+public interface CustomerRuleExtensionPoint extends IExtensionPoint {
 
     //Different business check for different biz
     public boolean addCustomerCheck(CustomerEntity customerEntity);

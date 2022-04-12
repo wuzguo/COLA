@@ -1,7 +1,7 @@
 package com.alibaba.cola.extension.test.customer.app.extension;
 
 import com.alibaba.cola.extension.Extension;
-import com.alibaba.cola.extension.test.customer.app.extensionpoint.CustomerConvertorExtPt;
+import com.alibaba.cola.extension.test.customer.app.extensionpoint.CustomerConvertorExtensionPoint;
 import com.alibaba.cola.extension.test.customer.client.AddCustomerCmd;
 import com.alibaba.cola.extension.test.customer.client.Constants;
 import com.alibaba.cola.extension.test.customer.domain.CustomerEntity;
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @date 2018-01-07 3:05 AM
  */
 @Extension(bizId = Constants.BIZ_2)
-public class CustomerBizTwoConvertorExt implements CustomerConvertorExtPt {
+public class CustomerBizTwoConvertorExtension implements CustomerConvertorExtensionPoint {
 
     @Autowired
     private CustomerConvertor customerConvertor;//Composite basic convertor to do basic conversion
