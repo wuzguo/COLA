@@ -21,62 +21,63 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @CatchAndLog
 public class Demo implements ApplicationContextAware {
+
     static ApplicationContext applicationContext;
 
-    public void doSomething(){
+    public void doSomething() {
         System.out.println("Doing something");
         CatchLogAspect catchAndLog = applicationContext.getBean(CatchLogAspect.class);
         System.out.println(catchAndLog);
         doSomethingInner();
     }
 
-    private void doSomethingInner(){
+    private void doSomethingInner() {
         System.out.println("doSomethingInner");
     }
 
-    public DemoResponse execute(Request request){
+    public DemoResponse execute(Request request) {
         System.out.println("executing request");
         return new DemoResponse(request.name, true);
     }
 
-    public DemoResponse executeWithExceptionAndDemoResponse(){
-        if(true){
+    public DemoResponse executeWithExceptionAndDemoResponse() {
+        if (true) {
             throw new RuntimeException("executeWithExceptionAndDemoResponse");
         }
         return null;
     }
 
-    public Response executeWithResponse(Request request){
+    public Response executeWithResponse(Request request) {
         DemoResponse demoResponse = new DemoResponse("Jack Ma", true);
         return SingleResponse.of(demoResponse);
     }
 
-    public Response executeWithExceptionAndResponse(){
-        if(true){
+    public Response executeWithExceptionAndResponse() {
+        if (true) {
             throw new RuntimeException("execute With Exception And Response");
         }
         return null;
     }
 
-    public void executeWithVoid(){
+    public void executeWithVoid() {
         System.out.println("execute with void");
     }
 
-    public void executeWithExceptionAndVoid(){
-        if(true){
+    public void executeWithExceptionAndVoid() {
+        if (true) {
             throw new BizException("execute With Exception And Void");
         }
     }
 
-    public SingleResponse executeWithBizExceptionAndResponse(){
-        if(true){
+    public SingleResponse executeWithBizExceptionAndResponse() {
+        if (true) {
             throw new BizException("execute With BizException And Response");
         }
         return null;
     }
 
-    public Response executeWithSysExceptionAndResponse(){
-        if(true){
+    public Response executeWithSysExceptionAndResponse() {
+        if (true) {
             throw new SysException("execute With SysException And Response");
         }
         return null;
@@ -89,12 +90,14 @@ public class Demo implements ApplicationContextAware {
     }
 
     public static class Request {
+
         public String name;
-        public int  age;
+        public int age;
     }
 
     @AllArgsConstructor
     public static class DemoResponse {
+
         public String name;
         public boolean isSuccess;
     }

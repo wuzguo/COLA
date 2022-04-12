@@ -6,9 +6,11 @@ package com.alibaba.cola.statemachine.builder;
  * @author Frank Zhang
  * @date 2020-02-07 9:39 PM
  */
-public interface InternalTransitionBuilder <S, E, C> {
+public interface InternalTransitionBuilder<S, E, C> {
+
     /**
      * Build a internal transition
+     *
      * @param stateId id of transition
      * @return To clause builder
      */

@@ -2,10 +2,10 @@ package com.alibaba.cola.extension.test.customer.app.extension;
 
 import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.extension.Extension;
+import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerValidatorExtensionPoint;
 import com.alibaba.cola.extension.test.customer.client.AddCustomerCmd;
 import com.alibaba.cola.extension.test.customer.client.Constants;
 import com.alibaba.cola.extension.test.customer.domain.CustomerType;
-import com.alibaba.cola.extension.test.customer.app.extensionpoint.AddCustomerValidatorExtensionPoint;
 
 /**
  * AddCustomerBizOneValidator
@@ -18,7 +18,8 @@ public class AddCustomerBizOneValidator implements AddCustomerValidatorExtension
 
     public void validate(AddCustomerCmd addCustomerCmd) {
         //For BIZ TWO CustomerTYpe could not be VIP
-        if(CustomerType.VIP == addCustomerCmd.getCustomerDTO().getCustomerType())
+        if (CustomerType.VIP == addCustomerCmd.getCustomerDTO().getCustomerType()) {
             throw new BizException("Customer Type could not be VIP for Biz One");
+        }
     }
 }

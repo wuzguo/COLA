@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GetOneCustomerQryExe {
 
-    public SingleResponse execute(GetOneCustomerQry getOneCustomerQry){
+    public SingleResponse execute(GetOneCustomerQry getOneCustomerQry) {
         return null;
     }
 }

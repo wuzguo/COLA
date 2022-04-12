@@ -2,6 +2,14 @@ package com.alibaba.cola.test;
 
 import com.alibaba.cola.test.command.TestClassRunCmd;
 import com.alibaba.cola.test.command.TestMethodRunCmd;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Resource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,15 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.Resource;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * TestExecutor
  *
@@ -26,6 +25,7 @@ import java.util.Map;
  * @date 2020-11-17 3:42 PM
  */
 public class TestExecutor {
+
     private String className;
     private String methodName;
 
@@ -33,7 +33,7 @@ public class TestExecutor {
 
     private ApplicationContext context;
 
-    public TestExecutor(ApplicationContext context){
+    public TestExecutor(ApplicationContext context) {
         this.context = context;
     }
 
@@ -54,7 +54,7 @@ public class TestExecutor {
         runMethodTest(cmd, testClz, testInstance);
     }
 
-    private void runMethodTest(TestMethodRunCmd cmd, Class<?> testClz, Object testInstance) throws Exception{
+    private void runMethodTest(TestMethodRunCmd cmd, Class<?> testClz, Object testInstance) throws Exception {
         Method beforeMethod = BeanMetaUtils.findMethod(testClz, Before.class);
         Method afterMethod = BeanMetaUtils.findMethod(testClz, After.class);
         Method method = testClz.getMethod(methodName);
@@ -72,8 +72,8 @@ public class TestExecutor {
         //notifier.fireTestRunFinished(colaDes.getDescription());
     }
 
-    private Object getTestInstance(Class<?> testClz) throws Exception{
-        if(testInstanceCache.get(className) != null) {
+    private Object getTestInstance(Class<?> testClz) throws Exception {
+        if (testInstanceCache.get(className) != null) {
             return testInstanceCache.get(className);
         }
         Object testInstance = testClz.newInstance();
@@ -81,23 +81,23 @@ public class TestExecutor {
         return testInstance;
     }
 
-    private void runClassTest(TestClassRunCmd cmd, Class<?> testClz, Object testInstance)throws Exception{
+    private void runClassTest(TestClassRunCmd cmd, Class<?> testClz, Object testInstance) throws Exception {
         Method[] allMethods = testClz.getMethods();
         Method beforeMethod = null;
         Method afterMethod = null;
         List<Method> testMethods = new ArrayList<Method>();
-        for (Method method : allMethods){
+        for (Method method : allMethods) {
             Annotation[] annotations = method.getAnnotations();
-            for(Annotation annotation : annotations){
-                if(annotation instanceof Before){
+            for (Annotation annotation : annotations) {
+                if (annotation instanceof Before) {
                     beforeMethod = method;
                     break;
                 }
-                if(annotation instanceof After){
+                if (annotation instanceof After) {
                     afterMethod = method;
                     break;
                 }
-                if(annotation instanceof Test || method.getName().startsWith("test")){
+                if (annotation instanceof Test || method.getName().startsWith("test")) {
                     testMethods.add(method);
                     break;
                 }
@@ -107,7 +107,7 @@ public class TestExecutor {
         //invoke before method
         invokeMethod(testInstance, beforeMethod);
         //invoke test methods
-        for(Method testMethod: testMethods){
+        for (Method testMethod : testMethods) {
 
             invokeMethod(testInstance, testMethod);
 
@@ -116,7 +116,7 @@ public class TestExecutor {
         invokeMethod(testInstance, afterMethod);
     }
 
-    private static void invokeMethod(Object obj, Method method) throws Exception{
+    private static void invokeMethod(Object obj, Method method) throws Exception {
         if (method == null) {
             return;
         }
@@ -125,10 +125,10 @@ public class TestExecutor {
 
     private void injectWiredBean(Class<?> testClz, Object testInstance) {
         Field[] fields = testClz.getDeclaredFields();
-        if(fields == null) {
+        if (fields == null) {
             return;
         }
-        for(Field field : fields) {
+        for (Field field : fields) {
             String beanName = field.getName();
             Annotation autowiredAnn = field.getDeclaredAnnotation(Autowired.class);
             Annotation resourceAnn = field.getDeclaredAnnotation(Resource.class);
@@ -139,17 +139,17 @@ public class TestExecutor {
         }
     }
 
-    private void trySetFieldValue(Field field, Object testInstance, String beanName){
+    private void trySetFieldValue(Field field, Object testInstance, String beanName) {
         try {
             field.setAccessible(true);
             field.set(testInstance, context.getBean(beanName));
             return;
-        } catch (IllegalArgumentException e){
-            if(!StringUtils.isEmpty(e.getMessage()) && e.getMessage().indexOf("\\$Proxy") > 0){
+        } catch (IllegalArgumentException e) {
+            if (!StringUtils.isEmpty(e.getMessage()) && e.getMessage().indexOf("\\$Proxy") > 0) {
                 System.err.println("此错误一般是实际类被代理导致，请尝试把字段类型改为接口!");
                 throw e;
             }
-        }catch (BeansException | IllegalAccessException e) {
+        } catch (BeansException | IllegalAccessException e) {
             System.err.println("根据beanName查找失败，尝试byType查找");
         }
 
@@ -157,7 +157,7 @@ public class TestExecutor {
             field.set(testInstance, context.getBean(field.getType()));
         } catch (Exception innerE) {
             innerE.printStackTrace();
-            System.err.println("oops!!! "+beanName + " can not be injected to "+ className);
+            System.err.println("oops!!! " + beanName + " can not be injected to " + className);
         }
     }
 

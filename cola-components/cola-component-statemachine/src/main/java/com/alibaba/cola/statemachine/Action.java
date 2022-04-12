@@ -1,8 +1,8 @@
 package com.alibaba.cola.statemachine;
 
 /**
- * Generic strategy interface used by a state machine to respond
- * events by executing an {@code Action} with a {@link StateContext}.
+ * Generic strategy interface used by a state machine to respond events by executing an {@code Action} with a {@link
+ * StateContext}.
  *
  * @author Frank Zhang
  * @date 2020-02-07 2:51 PM

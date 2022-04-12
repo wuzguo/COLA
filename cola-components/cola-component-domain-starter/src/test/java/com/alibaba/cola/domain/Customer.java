@@ -1,7 +1,5 @@
 package com.alibaba.cola.domain;
 
-import com.alibaba.cola.domain.Entity;
-
 import javax.annotation.Resource;
 
 /**
@@ -12,6 +10,7 @@ import javax.annotation.Resource;
  */
 @Entity
 public class Customer {
+
     private String name;
 
     private Integer age;
@@ -35,7 +34,7 @@ public class Customer {
         this.name = name;
     }
 
-    public Long getPurchasePowerScore(){
+    public Long getPurchasePowerScore() {
         return purchasePowerGateway.getScore();
     }
 }

@@ -4,14 +4,12 @@ import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.Transition;
 import com.alibaba.cola.statemachine.Visitor;
-
 import java.util.List;
 import java.util.Map;
 
 /**
- * For performance consideration,
- * The state machine is made "stateless" on purpose.
- * Once it's built, it can be shared by multi-thread
+ * For performance consideration, The state machine is made "stateless" on purpose. Once it's built, it can be shared by
+ * multi-thread
  * <p>
  * One side effect is since the state machine is stateless, we can not get current state from State Machine.
  *

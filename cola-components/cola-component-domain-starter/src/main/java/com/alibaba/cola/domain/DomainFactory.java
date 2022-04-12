@@ -8,7 +8,7 @@ package com.alibaba.cola.domain;
  */
 public class DomainFactory {
 
-    public static <T> T create(Class<T> entityClz){
+    public static <T> T create(Class<T> entityClz) {
         return ApplicationContextHelper.getBean(entityClz);
     }
 

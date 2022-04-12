@@ -2,12 +2,11 @@ package com.alibaba.cola.catchlog.test;
 
 import com.alibaba.cola.catchlog.CatchLogAspect;
 import com.alibaba.cola.catchlog.CatchLogAutoConfiguration;
+import javax.annotation.Resource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.annotation.Resource;
 
 /**
  *
@@ -33,7 +32,7 @@ public class CatchLogTest {
     }
 
     @Test
-    public void testExecuteWithResponse(){
+    public void testExecuteWithResponse() {
         Demo.Request request = new Demo.Request();
         request.name = "Frank";
         request.age = 18;
@@ -41,32 +40,32 @@ public class CatchLogTest {
     }
 
     @Test
-    public void testExecuteWithVoid(){
+    public void testExecuteWithVoid() {
         demo.executeWithVoid();
     }
 
     @Test
-    public void testExecuteWithExceptionAndVoid(){
+    public void testExecuteWithExceptionAndVoid() {
         demo.executeWithExceptionAndVoid();
     }
 
     @Test
-    public void testExecuteWithExceptionAndDemoResponse(){
+    public void testExecuteWithExceptionAndDemoResponse() {
         demo.executeWithExceptionAndDemoResponse();
     }
 
     @Test
-    public void testExecuteWithBizExceptionAndResponse(){
+    public void testExecuteWithBizExceptionAndResponse() {
         demo.executeWithBizExceptionAndResponse();
     }
 
     @Test
-    public void testExecuteWithSysExceptionAndResponse(){
+    public void testExecuteWithSysExceptionAndResponse() {
         demo.executeWithSysExceptionAndResponse();
     }
 
     @Test
-    public void testExecuteWithExceptionAndResponse(){
+    public void testExecuteWithExceptionAndResponse() {
         demo.executeWithExceptionAndResponse();
     }
 

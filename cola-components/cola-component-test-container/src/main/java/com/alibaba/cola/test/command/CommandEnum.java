@@ -15,7 +15,7 @@ public enum CommandEnum {
     private String cmd;
     private String desc;
 
-    CommandEnum(String cmd, String desc){
+    CommandEnum(String cmd, String desc) {
         this.cmd = cmd;
         this.desc = desc;
     }

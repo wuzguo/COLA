@@ -1,7 +1,7 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package}.test;
+#set($symbol_pound='#')
+    #set($symbol_dollar='$')
+    #set($symbol_escape='\' )
+    package ${package}.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

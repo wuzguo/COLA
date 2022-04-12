@@ -1,4 +1,4 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-org.springframework.boot.autoconfigure.EnableAutoConfiguration = ${package}.CatchLogAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=${package}.CatchLogAutoConfiguration

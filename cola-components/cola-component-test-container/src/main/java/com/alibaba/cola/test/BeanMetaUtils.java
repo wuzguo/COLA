@@ -10,12 +10,13 @@ import java.lang.reflect.Method;
  * @date 2020-11-17 4:49 PM
  */
 public class BeanMetaUtils {
-    public static Method findMethod(Class clazz, Class<? extends Annotation> annotationType){
+
+    public static Method findMethod(Class clazz, Class<? extends Annotation> annotationType) {
         Method[] allMethods = clazz.getMethods();
-        for (Method method : allMethods){
+        for (Method method : allMethods) {
             Annotation[] annotations = method.getAnnotations();
-            for(Annotation item : annotations){
-                if(item.annotationType().equals(annotationType)){
+            for (Annotation item : annotations) {
+                if (item.annotationType().equals(annotationType)) {
                     return method;
                 }
             }

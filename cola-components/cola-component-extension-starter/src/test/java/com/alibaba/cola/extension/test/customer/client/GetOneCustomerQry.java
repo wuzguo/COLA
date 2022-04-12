@@ -7,7 +7,8 @@ import com.alibaba.cola.dto.Query;
  *
  * @author Frank Zhang 2018-01-06 7:38 PM
  */
-public class GetOneCustomerQry extends Query{
+public class GetOneCustomerQry extends Query {
+
     private long customerId;
     private String companyName;
 

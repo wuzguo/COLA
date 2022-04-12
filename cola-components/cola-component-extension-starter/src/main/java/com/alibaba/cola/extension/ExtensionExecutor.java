@@ -8,15 +8,13 @@
 package com.alibaba.cola.extension;
 
 import com.alibaba.cola.extension.register.AbstractComponentExecutor;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-
 /**
- * ExtensionExecutor 
+ * ExtensionExecutor
+ *
  * @author fulan.zjf 2017-11-05
  */
 @Component
@@ -35,12 +33,11 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
 
     /**
      * if the bizScenarioUniqueIdentity is "ali.tmall.supermarket"
-     *
-     * the search path is as below:
-     * 1、first try to get extension by "ali.tmall.supermarket", if get, return it.
-     * 2、loop try to get extension by "ali.tmall", if get, return it.
-     * 3、loop try to get extension by "ali", if get, return it.
+     * <p>
+     * the search path is as below: 1、first try to get extension by "ali.tmall.supermarket", if get, return it. 2、loop
+     * try to get extension by "ali.tmall", if get, return it. 3、loop try to get extension by "ali", if get, return it.
      * 4、if not found, try the default extension
+     *
      * @param targetClz
      */
     protected <Ext> Ext locateExtension(Class<Ext> targetClz, BizScenario bizScenario) {
@@ -68,35 +65,36 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
             return extension;
         }
 
-        throw new RuntimeException("Can not find extension with ExtensionPoint: "+targetClz+" BizScenario:"+bizScenario.getUniqueIdentity());
+        throw new RuntimeException("Can not find extension with ExtensionPoint: " + targetClz + " BizScenario:"
+            + bizScenario.getUniqueIdentity());
     }
 
     /**
      * first try with full namespace
-     *
+     * <p>
      * example:  biz1.useCase1.scenario1
      */
-    private  <Ext> Ext firstTry(Class<Ext> targetClz, BizScenario bizScenario) {
+    private <Ext> Ext firstTry(Class<Ext> targetClz, BizScenario bizScenario) {
         log.debug("First trying with " + bizScenario.getUniqueIdentity());
         return locate(targetClz.getName(), bizScenario.getUniqueIdentity());
     }
 
     /**
      * second try with default scenario
-     *
+     * <p>
      * example:  biz1.useCase1.#defaultScenario#
      */
-    private <Ext> Ext secondTry(Class<Ext> targetClz, BizScenario bizScenario){
+    private <Ext> Ext secondTry(Class<Ext> targetClz, BizScenario bizScenario) {
         log.debug("Second trying with " + bizScenario.getIdentityWithDefaultScenario());
         return locate(targetClz.getName(), bizScenario.getIdentityWithDefaultScenario());
     }
 
     /**
      * third try with default use case + default scenario
-     *
+     * <p>
      * example:  biz1.#defaultUseCase#.#defaultScenario#
      */
-    private <Ext> Ext defaultUseCaseTry(Class<Ext> targetClz, BizScenario bizScenario){
+    private <Ext> Ext defaultUseCaseTry(Class<Ext> targetClz, BizScenario bizScenario) {
         log.debug("Third trying with " + bizScenario.getIdentityWithDefaultUseCase());
         return locate(targetClz.getName(), bizScenario.getIdentityWithDefaultUseCase());
     }
@@ -105,8 +103,8 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
         return (Ext) extensionRepository.getExtensionRepo().get(new ExtensionCoordinate(name, uniqueIdentity));
     }
 
-    private void checkNull(BizScenario bizScenario){
-        if(bizScenario == null){
+    private void checkNull(BizScenario bizScenario) {
+        if (bizScenario == null) {
             throw new IllegalArgumentException("BizScenario can not be null for extension");
         }
     }

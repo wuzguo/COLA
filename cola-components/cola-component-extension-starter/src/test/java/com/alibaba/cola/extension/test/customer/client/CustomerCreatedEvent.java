@@ -7,4 +7,5 @@ package com.alibaba.cola.extension.test.customer.client;
  * @date 2020-06-22 6:59 PM
  */
 public class CustomerCreatedEvent {
+
 }

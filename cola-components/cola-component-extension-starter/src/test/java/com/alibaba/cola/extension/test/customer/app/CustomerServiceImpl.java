@@ -4,11 +4,10 @@ import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.extension.test.customer.client.AddCustomerCmd;
 import com.alibaba.cola.extension.test.customer.client.CustomerDTO;
-import com.alibaba.cola.extension.test.customer.client.ICustomerService;
 import com.alibaba.cola.extension.test.customer.client.GetOneCustomerQry;
-import org.springframework.stereotype.Service;
-
+import com.alibaba.cola.extension.test.customer.client.ICustomerService;
 import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 /**
  * CustomerServiceImpl

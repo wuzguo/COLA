@@ -15,7 +15,7 @@ public interface CustomerRuleExtensionPoint extends IExtensionPoint {
     public boolean addCustomerCheck(CustomerEntity customerEntity);
 
     //Different upgrade policy for different biz
-    default public void customerUpgradePolicy(CustomerEntity customerEntity){
+    default public void customerUpgradePolicy(CustomerEntity customerEntity) {
         //Nothing special
     }
 }

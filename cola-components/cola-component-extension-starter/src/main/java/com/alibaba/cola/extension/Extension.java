@@ -7,12 +7,16 @@
  */
 package com.alibaba.cola.extension;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.*;
-
 /**
- * Extension 
+ * Extension
+ *
  * @author fulan.zjf 2017-11-05
  */
 @Inherited
@@ -20,7 +24,10 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Component
 public @interface Extension {
-    String bizId()  default BizScenario.DEFAULT_BIZ_ID;
+
+    String bizId() default BizScenario.DEFAULT_BIZ_ID;
+
     String useCase() default BizScenario.DEFAULT_USE_CASE;
+
     String scenario() default BizScenario.DEFAULT_SCENARIO;
 }

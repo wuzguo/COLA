@@ -35,7 +35,8 @@ public class CustomerEntity {
 
     public void addNewCustomer() {
         //Add customer policy
-        extensionExecutor.execute(CustomerRuleExtensionPoint.class,this.getBizScenario(), extension -> extension.addCustomerCheck(this));
+        extensionExecutor.execute(CustomerRuleExtensionPoint.class, this.getBizScenario(),
+            extension -> extension.addCustomerCheck(this));
 
         //Persist customer
         customerRepository.persist(this);

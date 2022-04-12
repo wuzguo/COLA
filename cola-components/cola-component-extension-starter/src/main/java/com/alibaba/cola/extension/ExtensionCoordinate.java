@@ -9,13 +9,13 @@ package com.alibaba.cola.extension;
 
 /**
  * Extension Coordinate(扩展坐标) is used to uniquely position an Extension
+ *
  * @author fulan.zjf 2017-11-05
  */
 public class ExtensionCoordinate {
-    
+
     private String extensionPointName;
     private String bizScenarioUniqueIdentity;
-
 
 
     //Wrapper
@@ -30,11 +30,11 @@ public class ExtensionCoordinate {
         return bizScenario;
     }
 
-    public static ExtensionCoordinate valueOf(Class extPtClass, BizScenario bizScenario){
+    public static ExtensionCoordinate valueOf(Class extPtClass, BizScenario bizScenario) {
         return new ExtensionCoordinate(extPtClass, bizScenario);
     }
 
-    public ExtensionCoordinate(Class extPtClass, BizScenario bizScenario){
+    public ExtensionCoordinate(Class extPtClass, BizScenario bizScenario) {
         this.extensionPointClass = extPtClass;
         this.extensionPointName = extPtClass.getName();
         this.bizScenario = bizScenario;
@@ -45,11 +45,11 @@ public class ExtensionCoordinate {
      * @param extensionPoint
      * @param bizScenario
      */
-    public ExtensionCoordinate(String extensionPoint, String bizScenario){
+    public ExtensionCoordinate(String extensionPoint, String bizScenario) {
         this.extensionPointName = extensionPoint;
         this.bizScenarioUniqueIdentity = bizScenario;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -58,24 +58,40 @@ public class ExtensionCoordinate {
         result = prime * result + ((extensionPointName == null) ? 0 : extensionPointName.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         ExtensionCoordinate other = (ExtensionCoordinate) obj;
         if (bizScenarioUniqueIdentity == null) {
-            if (other.bizScenarioUniqueIdentity != null) return false;
-        } else if (!bizScenarioUniqueIdentity.equals(other.bizScenarioUniqueIdentity)) return false;
+            if (other.bizScenarioUniqueIdentity != null) {
+                return false;
+            }
+        } else if (!bizScenarioUniqueIdentity.equals(other.bizScenarioUniqueIdentity)) {
+            return false;
+        }
         if (extensionPointName == null) {
-            if (other.extensionPointName != null) return false;
-        } else if (!extensionPointName.equals(other.extensionPointName)) return false;
+            if (other.extensionPointName != null) {
+                return false;
+            }
+        } else if (!extensionPointName.equals(other.extensionPointName)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "ExtensionCoordinate [extensionPointName=" + extensionPointName + ", bizScenarioUniqueIdentity=" + bizScenarioUniqueIdentity + "]";
+        return "ExtensionCoordinate [extensionPointName=" + extensionPointName + ", bizScenarioUniqueIdentity="
+            + bizScenarioUniqueIdentity + "]";
     }
-    
+
 }

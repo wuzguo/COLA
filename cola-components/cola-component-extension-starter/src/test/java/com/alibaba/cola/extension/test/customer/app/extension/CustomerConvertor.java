@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
  * @date 2018-01-07 3:08 AM
  */
 @Component
-public class CustomerConvertor{
+public class CustomerConvertor {
 
-    public CustomerEntity clientToEntity(Object clientObject){
-        AddCustomerCmd addCustomerCmd = (AddCustomerCmd)clientObject;
-        CustomerDTO customerDTO =addCustomerCmd.getCustomerDTO();
+    public CustomerEntity clientToEntity(Object clientObject) {
+        AddCustomerCmd addCustomerCmd = (AddCustomerCmd) clientObject;
+        CustomerDTO customerDTO = addCustomerCmd.getCustomerDTO();
         CustomerEntity customerEntity = (CustomerEntity) ApplicationContextHelper.getBean(CustomerEntity.class);
         customerEntity.setCompanyName(customerDTO.getCompanyName());
         customerEntity.setCustomerType(customerDTO.getCustomerType());

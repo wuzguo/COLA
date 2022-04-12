@@ -21,11 +21,11 @@ public class CustomerBizTwoConvertorExtension implements CustomerConvertorExtens
     private CustomerConvertor customerConvertor;//Composite basic convertor to do basic conversion
 
     @Override
-    public CustomerEntity clientToEntity(AddCustomerCmd addCustomerCmd){
+    public CustomerEntity clientToEntity(AddCustomerCmd addCustomerCmd) {
         CustomerEntity customerEntity = customerConvertor.clientToEntity(addCustomerCmd);
         //In this business, if customers from RFQ and Advertisement are both regarded as Advertisement
-        if(Constants.SOURCE_AD.equals(addCustomerCmd.getCustomerDTO().getSource()) || Constants.SOURCE_RFQ.equals(addCustomerCmd.getCustomerDTO().getSource()))
-        {
+        if (Constants.SOURCE_AD.equals(addCustomerCmd.getCustomerDTO().getSource()) || Constants.SOURCE_RFQ.equals(
+            addCustomerCmd.getCustomerDTO().getSource())) {
             customerEntity.setSourceType(SourceType.AD);
         }
         return customerEntity;

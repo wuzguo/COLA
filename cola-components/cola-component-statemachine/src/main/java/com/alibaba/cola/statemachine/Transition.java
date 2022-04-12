@@ -3,24 +3,22 @@ package com.alibaba.cola.statemachine;
 import com.alibaba.cola.statemachine.impl.TransitionType;
 
 /**
- * {@code Transition} is something what a state machine associates with a state
- * changes.
- *
- * @author Frank Zhang
+ * {@code Transition} is something what a state machine associates with a state changes.
  *
  * @param <S> the type of state
  * @param <E> the type of event
  * @param <C> the type of user defined context, which is used to hold application data
- *
+ * @author Frank Zhang
  * @date 2020-02-07 2:20 PM
  */
-public interface Transition<S, E, C>{
+public interface Transition<S, E, C> {
+
     /**
      * Gets the source state of this transition.
      *
      * @return the source state
      */
-    State<S,E,C> getSource();
+    State<S, E, C> getSource();
 
     void setSource(State<S, E, C> state);
 
@@ -29,12 +27,13 @@ public interface Transition<S, E, C>{
     void setEvent(E event);
 
     void setType(TransitionType type);
+
     /**
      * Gets the target state of this transition.
      *
      * @return the target state
      */
-    State<S,E,C> getTarget();
+    State<S, E, C> getTarget();
 
     void setTarget(State<S, E, C> state);
 
@@ -47,7 +46,7 @@ public interface Transition<S, E, C>{
 
     void setCondition(Condition<C> condition);
 
-    Action<S,E,C> getAction();
+    Action<S, E, C> getAction();
 
     void setAction(Action<S, E, C> action);
 
@@ -57,7 +56,8 @@ public interface Transition<S, E, C>{
      * @return the target state
      */
 
-    State<S,E,C> transit(C ctx);
+    State<S, E, C> transit(C ctx);
+
     /**
      * Verify transition correctness
      */

@@ -7,13 +7,12 @@ import com.alibaba.cola.extension.test.customer.client.Constants;
 import com.alibaba.cola.extension.test.customer.client.CustomerDTO;
 import com.alibaba.cola.extension.test.customer.client.ICustomerService;
 import com.alibaba.cola.extension.test.customer.domain.CustomerType;
+import javax.annotation.Resource;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.annotation.Resource;
 
 /**
  * ExtensionTest
@@ -24,11 +23,12 @@ import javax.annotation.Resource;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class ExtensionTest {
+
     @Resource
     private ICustomerService customerService;
 
     @Test
-    public void testBiz1UseCase1Scenario1AddCustomerSuccess(){
+    public void testBiz1UseCase1Scenario1AddCustomerSuccess() {
         //1. Prepare
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
         CustomerDTO customerDTO = new CustomerDTO();
@@ -47,7 +47,7 @@ public class ExtensionTest {
     }
 
     @Test
-    public void testBiz1UseCase1AddCustomerSuccess(){
+    public void testBiz1UseCase1AddCustomerSuccess() {
         //1. Prepare
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
         CustomerDTO customerDTO = new CustomerDTO();
@@ -66,7 +66,7 @@ public class ExtensionTest {
     }
 
     @Test
-    public void testBiz1AddCustomerSuccess(){
+    public void testBiz1AddCustomerSuccess() {
         //1. Prepare
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
         CustomerDTO customerDTO = new CustomerDTO();

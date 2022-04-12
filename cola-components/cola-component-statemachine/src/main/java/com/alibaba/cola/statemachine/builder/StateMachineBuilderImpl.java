@@ -5,7 +5,6 @@ import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.StateMachineFactory;
 import com.alibaba.cola.statemachine.impl.StateMachineImpl;
 import com.alibaba.cola.statemachine.impl.TransitionType;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,7 +19,7 @@ public class StateMachineBuilderImpl<S, E, C> implements StateMachineBuilder<S, 
     /**
      * StateMap is the same with stateMachine, as the core of state machine is holding reference to states.
      */
-    private final Map<S, State< S, E, C>> stateMap = new ConcurrentHashMap<>();
+    private final Map<S, State<S, E, C>> stateMap = new ConcurrentHashMap<>();
     private final StateMachineImpl<S, E, C> stateMachine = new StateMachineImpl<>(stateMap);
 
     @Override

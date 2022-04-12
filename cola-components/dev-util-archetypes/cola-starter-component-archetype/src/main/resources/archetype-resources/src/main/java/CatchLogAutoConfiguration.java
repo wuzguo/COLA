@@ -1,7 +1,7 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package};
+#set($symbol_pound='#')
+    #set($symbol_dollar='$')
+    #set($symbol_escape='\' )
+    package ${package};
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;

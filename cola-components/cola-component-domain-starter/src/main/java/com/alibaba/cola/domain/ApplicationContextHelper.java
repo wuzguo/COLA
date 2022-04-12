@@ -25,7 +25,7 @@ public class ApplicationContextHelper implements ApplicationContextAware {
         T beanInstance = null;
         //优先按type查
         try {
-            beanInstance = (T)applicationContext.getBean(targetClz);
+            beanInstance = (T) applicationContext.getBean(targetClz);
         } catch (Exception e) {
         }
         //按name查
@@ -33,7 +33,7 @@ public class ApplicationContextHelper implements ApplicationContextAware {
             String simpleName = targetClz.getSimpleName();
             //首字母小写
             simpleName = Character.toLowerCase(simpleName.charAt(0)) + simpleName.substring(1);
-            beanInstance = (T)applicationContext.getBean(simpleName);
+            beanInstance = (T) applicationContext.getBean(simpleName);
         }
         if (beanInstance == null) {
             throw new RuntimeException("Component " + targetClz + " can not be found in Spring Container");

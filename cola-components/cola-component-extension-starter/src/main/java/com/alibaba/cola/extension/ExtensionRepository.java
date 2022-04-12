@@ -7,13 +7,13 @@
  */
 package com.alibaba.cola.extension;
 
-import org.springframework.stereotype.Component;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
 /**
- * ExtensionRepository 
+ * ExtensionRepository
+ *
  * @author fulan.zjf 2017-11-05
  */
 @Component

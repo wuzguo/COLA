@@ -7,8 +7,10 @@ package com.alibaba.cola.statemachine.builder;
  * @date 2020-02-07 6:11 PM
  */
 public interface ExternalTransitionBuilder<S, E, C> {
+
     /**
      * Build transition source state.
+     *
      * @param stateId id of state
      * @return from clause builder
      */

@@ -14,7 +14,7 @@ public interface Condition<C> {
      */
     boolean isSatisfied(C context);
 
-    default String name(){
+    default String name() {
         return this.getClass().getSimpleName();
     }
 }

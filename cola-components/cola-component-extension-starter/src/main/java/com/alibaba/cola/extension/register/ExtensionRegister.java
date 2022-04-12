@@ -7,21 +7,24 @@
  */
 package com.alibaba.cola.extension.register;
 
-import com.alibaba.cola.extension.*;
-
+import com.alibaba.cola.extension.BizScenario;
+import com.alibaba.cola.extension.Extension;
+import com.alibaba.cola.extension.ExtensionCoordinate;
+import com.alibaba.cola.extension.ExtensionRepository;
+import com.alibaba.cola.extension.IExtensionPoint;
+import javax.annotation.Resource;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
-import javax.annotation.Resource;
-
 /**
- * ExtensionRegister 
+ * ExtensionRegister
+ *
  * @author fulan.zjf 2017-11-05
  */
 @Component
-public class ExtensionRegister{
+public class ExtensionRegister {
 
     @Resource
     private ExtensionRepository extensionRepository;
@@ -29,14 +32,16 @@ public class ExtensionRegister{
     public static final String EXTENSION_EXTPT_NAMING = "ExtPt";
 
 
-    public void doRegistration(IExtensionPoint extensionObject){
-        Class<?>  extensionClz = extensionObject.getClass();
+    public void doRegistration(IExtensionPoint extensionObject) {
+        Class<?> extensionClz = extensionObject.getClass();
         if (AopUtils.isAopProxy(extensionObject)) {
             extensionClz = ClassUtils.getUserClass(extensionObject);
         }
         Extension extensionAnn = AnnotationUtils.findAnnotation(extensionClz, Extension.class);
-        BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
-        ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
+        BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(),
+            extensionAnn.scenario());
+        ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz),
+            bizScenario.getUniqueIdentity());
         IExtensionPoint preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
         if (preVal != null) {
             throw new RuntimeException("Duplicate registration is not allowed for :" + extensionCoordinate);
@@ -49,14 +54,17 @@ public class ExtensionRegister{
      */
     private String calculateExtensionPoint(Class<?> targetClz) {
         Class<?>[] interfaces = ClassUtils.getAllInterfacesForClass(targetClz);
-        if (interfaces == null || interfaces.length == 0)
-            throw new RuntimeException("Please assign a extension point interface for "+targetClz);
+        if (interfaces == null || interfaces.length == 0) {
+            throw new RuntimeException("Please assign a extension point interface for " + targetClz);
+        }
         for (Class intf : interfaces) {
             String extensionPoint = intf.getSimpleName();
-            if (extensionPoint.contains(EXTENSION_EXTPT_NAMING))
+            if (extensionPoint.contains(EXTENSION_EXTPT_NAMING)) {
                 return intf.getName();
+            }
         }
-        throw new RuntimeException("Your name of ExtensionPoint for "+targetClz+" is not valid, must be end of "+ EXTENSION_EXTPT_NAMING);
+        throw new RuntimeException(
+            "Your name of ExtensionPoint for " + targetClz + " is not valid, must be end of " + EXTENSION_EXTPT_NAMING);
     }
 
 }

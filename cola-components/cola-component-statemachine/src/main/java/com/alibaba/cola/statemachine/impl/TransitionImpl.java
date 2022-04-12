@@ -7,13 +7,13 @@ import com.alibaba.cola.statemachine.Transition;
 
 /**
  * TransitionImpl。
- *
+ * <p>
  * This should be designed to be immutable, so that there is no thread-safe risk
  *
  * @author Frank Zhang
  * @date 2020-02-07 10:32 PM
  */
-public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
+public class TransitionImpl<S, E, C> implements Transition<S, E, C> {
 
     private State<S, E, C> source;
 
@@ -23,7 +23,7 @@ public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
 
     private Condition<C> condition;
 
-    private Action<S,E,C> action;
+    private Action<S, E, C> action;
 
     private TransitionType type = TransitionType.EXTERNAL;
 
@@ -84,31 +84,31 @@ public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
 
     @Override
     public State<S, E, C> transit(C ctx) {
-        Debugger.debug("Do transition: "+this);
+        Debugger.debug("Do transition: " + this);
         this.verify();
-        if(condition == null || condition.isSatisfied(ctx)){
-            if(action != null){
+        if (condition == null || condition.isSatisfied(ctx)) {
+            if (action != null) {
                 action.execute(source.getId(), target.getId(), event, ctx);
             }
             return target;
         }
 
-        Debugger.debug("Condition is not satisfied, stay at the "+source+" state ");
+        Debugger.debug("Condition is not satisfied, stay at the " + source + " state ");
         return source;
     }
 
     @Override
     public final String toString() {
-        return source + "-[" + event.toString() +", "+type+"]->" + target;
+        return source + "-[" + event.toString() + ", " + type + "]->" + target;
     }
 
     @Override
-    public boolean equals(Object anObject){
-        if(anObject instanceof Transition){
-            Transition other = (Transition)anObject;
-            if(this.event.equals(other.getEvent())
-                    && this.source.equals(other.getSource())
-                    && this.target.equals(other.getTarget())){
+    public boolean equals(Object anObject) {
+        if (anObject instanceof Transition) {
+            Transition other = (Transition) anObject;
+            if (this.event.equals(other.getEvent())
+                && this.source.equals(other.getSource())
+                && this.target.equals(other.getTarget())) {
                 return true;
             }
         }
@@ -117,9 +117,9 @@ public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
 
     @Override
     public void verify() {
-        if(type== TransitionType.INTERNAL && source != target) {
+        if (type == TransitionType.INTERNAL && source != target) {
             throw new StateMachineException(String.format("Internal transition source state '%s' " +
-                    "and target state '%s' must be same.", source, target));
+                "and target state '%s' must be same.", source, target));
         }
     }
 }

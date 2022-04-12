@@ -9,15 +9,14 @@ import java.util.Map;
  * <p>Useful for identifying programmer errors early and clearly at runtime.
  *
  * <p>For example, if the contract of a public method states it does not
- * allow {@code null} arguments, {@code Assert} can be used to validate that
- * contract.
- *
+ * allow {@code null} arguments, {@code Assert} can be used to validate that contract.
+ * <p>
  * For example:
  *
  * <pre class="code">
  * Assert.notNull(clazz, "The class must not be null");
  * Assert.isTrue(i > 0, "The value must be greater than zero");</pre>
- *
+ * <p>
  * This class is empowered by  {@link org.springframework.util.Assert}
  *
  * @author Frank Zhang
@@ -27,10 +26,11 @@ public abstract class Assert {
 
     /**
      * Assert a boolean expression, throwing {@code BizException}
-     *
+     * <p>
      * for example
      *
-     * <pre class="code">Assert.isTrue(i != 0, errorCode.B_ORDER_illegalNumber, "The order number can not be zero");</pre>
+     * <pre class="code">Assert.isTrue(i != 0, errorCode.B_ORDER_illegalNumber, "The order number can not be
+     * zero");</pre>
      *
      * @param expression a boolean expression
      * @param errorCode
@@ -45,11 +45,12 @@ public abstract class Assert {
 
     /**
      * Assert a boolean expression, if expression is true, throwing {@code BizException}
-     *
+     * <p>
      * for example
      *
-     * <pre class="code">Assert.isFalse(i == 0, errorCode.B_ORDER_illegalNumber, "The order number can not be zero");</pre>
-     *
+     * <pre class="code">Assert.isFalse(i == 0, errorCode.B_ORDER_illegalNumber, "The order number can not be
+     * zero");</pre>
+     * <p>
      * This is more intuitive than isTure.
      */
     public static void isFalse(boolean expression, String errorCode, String errMessage) {

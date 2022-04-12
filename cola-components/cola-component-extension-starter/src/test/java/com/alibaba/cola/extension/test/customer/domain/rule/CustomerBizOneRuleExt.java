@@ -17,7 +17,7 @@ public class CustomerBizOneRuleExt implements CustomerRuleExtensionPoint {
 
     @Override
     public boolean addCustomerCheck(CustomerEntity customerEntity) {
-        if(SourceType.AD == customerEntity.getSourceType()){
+        if (SourceType.AD == customerEntity.getSourceType()) {
             throw new BizException("Sorry, Customer from advertisement can not be added in this period");
         }
         return true;

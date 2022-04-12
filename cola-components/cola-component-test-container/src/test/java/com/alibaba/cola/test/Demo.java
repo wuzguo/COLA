@@ -7,22 +7,22 @@ import org.junit.Test;
 public class Demo {
 
     @Before
-    public void before(){
+    public void before() {
         System.out.println("before action");
     }
 
     @Test
-    public void testOne(){
+    public void testOne() {
         System.out.println("test one");
     }
 
     @Test
-    public void testTwo(){
+    public void testTwo() {
         System.out.println("test two");
     }
 
     @After
-    public void after(){
+    public void after() {
         System.out.println("after action");
     }
 }

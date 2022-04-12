@@ -8,12 +8,13 @@ package com.alibaba.cola.extension;
  * @date 2019-08-20 12:07
  */
 public class BizScenario {
+
     public static final String DEFAULT_BIZ_ID = "#defaultBizId#";
-    
+
     public static final String DEFAULT_USE_CASE = "#defaultUseCase#";
-    
+
     public static final String DEFAULT_SCENARIO = "#defaultScenario#";
-    
+
     private static final String DOT_SEPARATOR = ".";
 
     /**
@@ -32,16 +33,16 @@ public class BizScenario {
     private String scenario = DEFAULT_SCENARIO;
 
     /**
-     * For above case, the BizScenario will be "tmall.placeOrder.88vip",
-     * with this code, we can provide extension processing other than "tmall.placeOrder.normal" scenario.
+     * For above case, the BizScenario will be "tmall.placeOrder.88vip", with this code, we can provide extension
+     * processing other than "tmall.placeOrder.normal" scenario.
      *
      * @return
      */
-    public String getUniqueIdentity(){
+    public String getUniqueIdentity() {
         return bizId + DOT_SEPARATOR + useCase + DOT_SEPARATOR + scenario;
     }
 
-    public static BizScenario valueOf(String bizId, String useCase, String scenario){
+    public static BizScenario valueOf(String bizId, String useCase, String scenario) {
         BizScenario bizScenario = new BizScenario();
         bizScenario.bizId = bizId;
         bizScenario.useCase = useCase;
@@ -49,23 +50,23 @@ public class BizScenario {
         return bizScenario;
     }
 
-    public static BizScenario valueOf(String bizId, String useCase){
+    public static BizScenario valueOf(String bizId, String useCase) {
         return BizScenario.valueOf(bizId, useCase, DEFAULT_SCENARIO);
     }
 
-    public static BizScenario valueOf(String bizId){
+    public static BizScenario valueOf(String bizId) {
         return BizScenario.valueOf(bizId, DEFAULT_USE_CASE, DEFAULT_SCENARIO);
     }
 
-    public static BizScenario newDefault(){
+    public static BizScenario newDefault() {
         return BizScenario.valueOf(DEFAULT_BIZ_ID, DEFAULT_USE_CASE, DEFAULT_SCENARIO);
     }
 
-    public String getIdentityWithDefaultScenario(){
+    public String getIdentityWithDefaultScenario() {
         return bizId + DOT_SEPARATOR + useCase + DOT_SEPARATOR + DEFAULT_SCENARIO;
     }
 
-    public String getIdentityWithDefaultUseCase(){
+    public String getIdentityWithDefaultUseCase() {
         return bizId + DOT_SEPARATOR + DEFAULT_USE_CASE + DOT_SEPARATOR + DEFAULT_SCENARIO;
     }
 }

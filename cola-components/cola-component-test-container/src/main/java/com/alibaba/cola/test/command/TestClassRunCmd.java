@@ -9,6 +9,7 @@ import com.alibaba.cola.test.TestsContainer;
  * @date 2020-11-17 4:42 PM
  */
 public class TestClassRunCmd extends AbstractCommand {
+
     private String className;
 
     public TestClassRunCmd(String cmdRaw) {

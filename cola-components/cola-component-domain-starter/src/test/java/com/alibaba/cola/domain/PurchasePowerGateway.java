@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PurchasePowerGateway {
 
-    public Long getScore(){
+    public Long getScore() {
         return 96L;
     }
 }

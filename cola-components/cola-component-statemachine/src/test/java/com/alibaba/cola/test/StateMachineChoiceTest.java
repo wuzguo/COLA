@@ -14,10 +14,11 @@ import org.junit.Test;
  */
 public class StateMachineChoiceTest {
 
-    static class Context{
+    static class Context {
+
         private String condition;
 
-        public Context(String condition){
+        public Context(String condition) {
             this.condition = condition;
         }
 
@@ -27,13 +28,11 @@ public class StateMachineChoiceTest {
     }
 
     /**
-     * 测试选择分支，针对同一个事件：EVENT1
-     * if condition == "1", STATE1 --> STATE1
-     * if condition == "2" , STATE1 --> STATE2
-     * if condition == "3" , STATE1 --> STATE3
+     * 测试选择分支，针对同一个事件：EVENT1 if condition == "1", STATE1 --> STATE1 if condition == "2" , STATE1 --> STATE2 if condition
+     * == "3" , STATE1 --> STATE3
      */
     @Test
-    public void testChoice(){
+    public void testChoice() {
         StateMachineBuilder<StateMachineTest.States, StateMachineTest.Events, Context> builder = StateMachineBuilderFactory.create();
         builder.internalTransition()
             .within(StateMachineTest.States.STATE1)
@@ -53,17 +52,21 @@ public class StateMachineChoiceTest {
             .when(checkCondition3())
             .perform(doAction());
 
-        StateMachine<StateMachineTest.States, StateMachineTest.Events, Context> stateMachine = builder.build("ChoiceConditionMachine");
-        StateMachineTest.States target1 = stateMachine.fireEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context("1"));
-        Assert.assertEquals(StateMachineTest.States.STATE1,target1);
-        StateMachineTest.States target2 = stateMachine.fireEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context("2"));
-        Assert.assertEquals(StateMachineTest.States.STATE2,target2);
-        StateMachineTest.States target3 = stateMachine.fireEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context("3"));
-        Assert.assertEquals(StateMachineTest.States.STATE3,target3);
+        StateMachine<StateMachineTest.States, StateMachineTest.Events, Context> stateMachine = builder.build(
+            "ChoiceConditionMachine");
+        StateMachineTest.States target1 = stateMachine.fireEvent(StateMachineTest.States.STATE1,
+            StateMachineTest.Events.EVENT1, new Context("1"));
+        Assert.assertEquals(StateMachineTest.States.STATE1, target1);
+        StateMachineTest.States target2 = stateMachine.fireEvent(StateMachineTest.States.STATE1,
+            StateMachineTest.Events.EVENT1, new Context("2"));
+        Assert.assertEquals(StateMachineTest.States.STATE2, target2);
+        StateMachineTest.States target3 = stateMachine.fireEvent(StateMachineTest.States.STATE1,
+            StateMachineTest.Events.EVENT1, new Context("3"));
+        Assert.assertEquals(StateMachineTest.States.STATE3, target3);
     }
 
     private Condition<Context> checkCondition1() {
-        return  (ctx) -> "1".equals(ctx.getCondition());
+        return (ctx) -> "1".equals(ctx.getCondition());
     }
 
     private Condition<Context> checkCondition2() {
@@ -75,8 +78,8 @@ public class StateMachineChoiceTest {
     }
 
     private Action<StateMachineTest.States, StateMachineTest.Events, Context> doAction() {
-        return (from, to, event, ctx)->{
-            System.out.println("from:"+from+" to:"+to+" on:"+event+" condition:" + ctx.getCondition());
+        return (from, to, event, ctx) -> {
+            System.out.println("from:" + from + " to:" + to + " on:" + event + " condition:" + ctx.getCondition());
         };
     }
 }
