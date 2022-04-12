@@ -6,8 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Response with batch record to return,
- * usually use in conditional query
+ * Response with batch record to return, usually use in conditional query
  * <p/>
  * Created by Danny.Lee on 2017/11/1.
  */
@@ -18,7 +17,13 @@ public class MultiResponse<T> extends Response {
     private Collection<T> data;
 
     public List<T> getData() {
-        return null == data ? Collections.emptyList() : new ArrayList<>(data);
+        if (null == data) {
+            return Collections.emptyList();
+        }
+        if (data instanceof List) {
+            return (List<T>) data;
+        }
+        return new ArrayList<>(data);
     }
 
     public void setData(Collection<T> data) {
@@ -33,14 +38,14 @@ public class MultiResponse<T> extends Response {
         return !isEmpty();
     }
 
-    public static MultiResponse buildSuccess() {
-        MultiResponse response = new MultiResponse();
+    public static MultiResponse<Object> buildSuccess() {
+        MultiResponse<Object> response = new MultiResponse<>();
         response.setSuccess(true);
         return response;
     }
 
-    public static MultiResponse buildFailure(String errCode, String errMessage) {
-        MultiResponse response = new MultiResponse();
+    public static MultiResponse<Object> buildFailure(String errCode, String errMessage) {
+        MultiResponse<Object> response = new MultiResponse<>();
         response.setSuccess(false);
         response.setErrCode(errCode);
         response.setErrMessage(errMessage);

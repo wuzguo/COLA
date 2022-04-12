@@ -6,8 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Response with batch page record to return,
- * usually use in page query
+ * Response with batch page record to return, usually use in page query
  * <p/>
  * Created by xiaochu.lbj on 2020/06/30.
  */
@@ -62,7 +61,13 @@ public class PageResponse<T> extends Response {
     }
 
     public List<T> getData() {
-        return null == data ? Collections.emptyList() : new ArrayList<>(data);
+        if (null == data) {
+            return Collections.emptyList();
+        }
+        if (data instanceof List) {
+            return (List<T>) data;
+        }
+        return new ArrayList<>(data);
     }
 
     public void setData(Collection<T> data) {
